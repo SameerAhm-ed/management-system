@@ -104,16 +104,16 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Testing new thing
+   // Testing new thing
   //  const outsideTextLabels = {
   //   id: 'outsideTextLabels',
   //   afterDatasetsDraw(chart, args, plugins) {
   //     const { ctx, data } = chart;
-
+  
   //     const xCenter = chart.getDatasetMeta(0).data[0].x;
   //     const yCenter = chart.getDatasetMeta(0).data[0].y;
   //     const outerRadius = chart.getDatasetMeta(0).data[0].outerRadius - 20;
-
+  
   //     chart.getDatasetMeta(0).data.forEach((dataPoint, index) => {
   //       const value = data.datasets[0].data[index];
   //       console.log(value)
@@ -124,7 +124,7 @@ export default function Home() {
   //         const centerAngle = (startAngle + endAngle) / 2;
   //         const xCoor = (outerRadius + offset) * Math.cos(centerAngle);
   //         const yCoor = (outerRadius + offset) * Math.sin(centerAngle);
-
+  
   //         ctx.save();
   //         ctx.translate(xCenter, yCenter);
   //         ctx.font = 'bold 14px sans-serif';
@@ -136,7 +136,7 @@ export default function Home() {
   //     });
   //   }
   // };
-
+  
   useEffect(() => {
     if (data.length > 0 && solarData.length > 0) {
       const ctx = document.getElementById("electricalph") as HTMLCanvasElement;
@@ -170,12 +170,7 @@ export default function Home() {
           datasets: [
             {
               label: "D",
-              data: [
-                totalValueph1,
-                totalValueph2,
-                totalValueph3,
-                totalValueSolar,
-              ],
+              data: [totalValueph1, totalValueph2, totalValueph3, totalValueSolar],
               backgroundColor: ["#384C6B", "#a75281", "#C09741", "#9595B7"],
             },
           ],
@@ -196,7 +191,7 @@ export default function Home() {
         },
         plugins: [
           // outsideTextLabels
-        ],
+        ]
       });
       chart.update(); // Update the chart to apply changes
     }
@@ -253,7 +248,7 @@ export default function Home() {
         },
         plugins: [
           // outsideTextLabels
-        ],
+        ]
       });
       chart.update(); // Update the chart to apply changes
     }
@@ -337,7 +332,7 @@ export default function Home() {
                     {data.map((item) =>
                       (
                         (item.powerhouse1gen +
-                          item.powerhouse2gen +
+                          item.powerhouse2gen + 
                           item.powerhouse3gen +
                           totalSolar) /
                         1000
@@ -363,61 +358,64 @@ export default function Home() {
                 </div>
               </CardContent>
               <div className="">
-                <div className="flex">
-                  <div className="bg-[#384C6B] w-10 h-5 m-1"></div>
-                  <p>Power House 1</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {(item.powerhouse1gen / 1000).toFixed(1)} MW
-                      </p>
-                    );
-                  })}
-                </div>
-                <div className="flex">
-                  <div className="bg-[#a75281] w-10 h-5 m-1"></div>
-                  <p>Power House 2</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {(item.powerhouse2gen / 1000).toFixed(1)} MW
-                      </p>
-                    );
-                  })}
-                </div>
-                <div className="flex">
-                  <div className="bg-[#C09741] w-10 h-5 m-1"></div>
-                  <p>Power House 3</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {(item.powerhouse3gen / 1000).toFixed(1)} MW
-                      </p>
-                    );
-                  })}
-                </div>
-                <div className="flex">
-                  <div className="bg-[#9595B7] w-10 h-5 m-1"></div>
-                  <p>Solar Panels</p>
-                  {solarData.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {(item.solar_total_kW / 1000).toFixed(2)} MW
-                      </p>
-                    );
-                  })}
-                </div>
+                <a href="/powerhouse1">
+                  <div className="flex">
+                    <div className="bg-[#384C6B] w-10 h-5 m-1"></div>
+                    <p>Power House 1</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {(item.powerhouse1gen / 1000).toFixed(1)} MW
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
+                <a href="/powerhouse2">
+                  <div className="flex">
+                    <div className="bg-[#a75281] w-10 h-5 m-1"></div>
+                    <p>Power House 2</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {(item.powerhouse2gen / 1000).toFixed(1)} MW
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
+                <a href="/powerhouse3">
+                  <div className="flex">
+                    <div className="bg-[#C09741] w-10 h-5 m-1"></div>
+                    <p>Power House 3</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {(item.powerhouse3gen / 1000).toFixed(1)} MW
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
+                <a href="/solar">
+                  <div className="flex">
+                    <div className="bg-[#9595B7] w-10 h-5 m-1"></div>
+                    <p>Solar Panels</p>
+                    {solarData.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {(item.solar_total_kW / 1000).toFixed(2)} MW
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
                 <div className="flex bg-[#1b2d92] m-[2px] p-1 text-white font-semibold rounded">
                   <p className="ml-1">Total Power Generation</p>
                   {data.map((item) => {
                     return (
                       <p className="ml-auto mr-5" key={item.id}>
-                        {(
-                          (item.totalpowergen +
-                            item.powerhouse3gen +
-                            totalSolar) /
-                          1000
-                        ).toFixed(1)}{" "}
+                        {((item.totalpowergen + item.powerhouse3gen + totalSolar) / 1000).toFixed(1)}{" "}
                         MW
                       </p>
                     );
@@ -517,39 +515,45 @@ export default function Home() {
                 </div>
               </CardContent>
               <div className="">
-                <div className="flex">
-                  <div className="bg-[#384C6B] w-10 h-5 m-1"></div>
-                  <p>Steam Power House 1</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {item.steamph1} T/H
-                      </p>
-                    );
-                  })}
-                </div>
-                <div className="flex">
-                  <div className="bg-[#E28A2B] w-10 h-5 m-1"></div>
-                  <p>Steam Power House 2</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {item.steamph2} T/H
-                      </p>
-                    );
-                  })}
-                </div>
-                <div className="flex">
-                  <div className="bg-[#9595B7] w-10 h-5 m-1"></div>
-                  <p>Coal Boiler</p>
-                  {data.map((item) => {
-                    return (
-                      <p className="ml-auto mr-5" key={item.id}>
-                        {item.cb} T/H
-                      </p>
-                    );
-                  })}
-                </div>
+                <a href="/steamph1">
+                  <div className="flex">
+                    <div className="bg-[#384C6B] w-10 h-5 m-1"></div>
+                    <p>Steam Power House 1</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {item.steamph1} T/H
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
+                <a href="/steamph2">
+                  <div className="flex">
+                    <div className="bg-[#E28A2B] w-10 h-5 m-1"></div>
+                    <p>Steam Power House 2</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {item.steamph2} T/H
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
+                <a href="/steamph3">
+                  <div className="flex">
+                    <div className="bg-[#9595B7] w-10 h-5 m-1"></div>
+                    <p>Coal Boiler</p>
+                    {data.map((item) => {
+                      return (
+                        <p className="ml-auto mr-5" key={item.id}>
+                          {item.cb} T/H
+                        </p>
+                      );
+                    })}
+                  </div>
+                </a>
                 <div className="flex bg-[#1b2d92] m-[2px] p-1 text-white font-semibold rounded">
                   <p className="ml-1">Total Steam Generation</p>
                   {data.map((item) => {
